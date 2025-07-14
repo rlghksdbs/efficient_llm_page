@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Efficient LLM.">
+  <meta name="keywords" content="Efficient LLM">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LiteRT-Optimized INT8 LLM for Raspberry Pi4 Deployment</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/a.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://github.com/rlghksdbs">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://rlghksdbs.github.io/iam-vfi_page">
+            IAM-VFI
+          </a>
+          <a class="navbar-item" href="https://rlghksdbs.github.io/lrsrn_page">
+            LRSRN
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">LiteRT-Optimized INT8 LLM for Raspberry Pi4 Deployment</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=LLLbCIQAAAAJ&hl=ko&oi=sra">Kihwan Yoon</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=mAsMwa4AAAAJ&hl=ko&oi=sra">Hyeon-Cheol Moon</a><sup>1</sup>,</span>
+            <span class="author-block">
+              Aeri Kim</a><sup>1</sup>,</span>
+            <span class="author-block">
+              Sungjei Kim</a><sup>1</sup>,</span>
+            <span class="author-block">
+              Sang-Seol Lee</a><sup>1</sup>,</span>
+            <span class="author-block">
+              Sung-Joon Kim</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=PR4pvCMAAAAJ&hl=ko&oi=sra">Ganzorig Gankuyag</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              Jinwoo Jeong</a><sup>1</sup>,</span>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Korea Electronics Technology Institute</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>*</sup>equal contribution</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>†</sup>corresponding author</span>
+          </div>
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/rlghksdbs/CASR.git"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Presentation Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                  </a>
+              </span>
+              <!-- Poster Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Poster</span>
+                  </a>
+              </span>
+              <!-- Report Paper. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Challenge Report</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Large Language Models (LLMs) have demonstrated impressive capabilities across a wide range of natural language processing tasks. 
+            However, their high computational and memory requirements pose significant challenges for deployment on resource-constrained edge devices such as the Raspberry Pi.       
+          </p>
+          <p>
+            In this work, we investigate post-training quantization techniques to reduce the computational burden of LLMs while preserving their quality. 
+            We evaluate several LLMs under different precision settings and show that 8-bit quantization—especially when combined with runtime-level optimizations like LiteRT—achieves up to 2× faster inference on Raspberry Pi, compared to framework-native formats, without relying on hardware-specific acceleration libraries (e.g., GPU, NNAPI, or EdgeTPU), and with negligible degradation in output quality.
+          </p>
+          <p>
+            Our experiments highlight the practicality of lightweight LLM deployment on edge devices. 
+            These findings demonstrate the feasibility of real-time applications on low-power devices, enabling broader accessibility in edge environments.
+          </p>
+        </div>
+      </div>
+    </div>
+      <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe width="560" height="315" src="" 
+          title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+<!-- 
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">PytorchQAT vs LiteRT</h2>
+        <image src="./static/images/CASR_train.png" class="img-responsive" alt="IAM-VFI"><br>
+        <image src="./static/images/CASR_test.png" class="img-responsive" alt="IAM-VFI"><br>
+        <div class="content has-text-justified">
+          <p>
+            <b>Top :</b> CASR train stage. <br>
+            <b>Bottom : </b> CASR test stage.</br>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+      <h2 class="title is-3">Runtime Evaluation on the Rasberry Pi4</h2>
+        <image src="./static/images/table.png" class="img-responsive" alt="IAM-VFI"><br>
+        <image src="./static/images/compare.png" class="img-responsive" alt="IAM-VFI"><br>
+          <div class="content has-text-justified">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">PytorchQAT vs LiteRT</h2>
+        <image src="./static/images/prompt_compare_v1.png" class="img-responsive" alt="IAM-VFI"><br>
+        <image src="./static/images/prompt_compare2_v1.png" class="img-responsive" alt="IAM-VFI"><br>
+        <div class="content has-text-justified">
+          <p>
+            <b>Top :</b> Quantized INT8 model’s (Llama-3.2-1B) response quality between Litet RT and Pytorch PTQ <br>
+            <b>Bottom : </b> Compare response quality between LLMs</br>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>
+    <!-- @InProceedings{Yoon_2024_CVPR,
+        author    = {Yoon, Kihwan and Gankhuyag, Ganzorig and Park, Jinman and Son, Haengseon and Min, Kyoungwon},
+        title     = {CASR: Efficient Cascade Network Structure with Channel Aligned method for 4K Real-Time Single Image Super-Resolution},
+        booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops},
+        month     = {June},
+        year      = {2024},
+        pages     = {7911-7920}
+    } -->
+</code></pre>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <!-- Challenge Report. -->
+      <div class="column is-four-fifths">
+          <h2 class="title is-3">MAI/AIM 2025 Challenge Diploma</h2>
+          <image src="" class="img-responsive" alt="IAM-VFI"><br>
+        </div>
+      </div>
+      <!--/ Challenge Report. -->
+
+      <!-- Diploma. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">MAI/AIM 2025 Challenge Diploma</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+
+            </p>
+            <image src="" class="img-responsive" alt="IAM-VFI"><br>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Diploma. -->
+  </section>
+
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/rlghksdbs" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is borrowed from <a rel="license"
+            href="https://github.com/nerfies/nerfies.github.io">nerfies</a>
+          </p>
+
+          <p>
+            We thanks the authors of <a rel="license" href="https://github.com/nerfies/nerfies.github.io">nerfies</a>
+             for open-sourcing the template for this website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
